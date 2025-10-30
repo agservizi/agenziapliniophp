@@ -3,7 +3,7 @@
 
 return [
     'app' => [
-        'name' => 'Agenzia Plinio',
+        'name' => 'AG SERVIZI VIA PLINIO 72',
         'domain' => 'agenziaplinio.local',
         'base_url' => '/',
         'support_email' => 'supporto@agenziaplinio.local',
