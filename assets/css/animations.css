@@ -51,21 +51,3 @@
     will-change: transform;
     transition: transform 0.2s ease-out;
 }
-
-.button-liquid {
-    position: relative;
-    overflow: hidden;
-}
-
-.button-liquid::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle, rgba(255, 191, 0, 0.4), transparent 60%);
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.45s ease;
-}
-
-.button-liquid:hover::before {
-    transform: translate(-50%, -50%) scale(2);
-}

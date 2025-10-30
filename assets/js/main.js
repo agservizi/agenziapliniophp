@@ -2,7 +2,7 @@
 (function () {
     document.addEventListener('DOMContentLoaded', () => {
         initPreloader();
-        initNavbarBurger();
+    initNavbarToggle();
         initMagneticCards();
         init3DButtons();
         initCounters();
@@ -20,15 +20,42 @@
         });
     }
 
-    function initNavbarBurger() {
-        const burgers = Array.from(document.querySelectorAll('.navbar-burger'));
-        burgers.forEach(burger => {
-            const targetId = burger.dataset.target;
-            const target = document.getElementById(targetId);
-            burger.addEventListener('click', () => {
-                burger.classList.toggle('is-active');
-                target?.classList.toggle('is-active');
+    function initNavbarToggle() {
+        const toggle = document.querySelector('[data-nav-toggle]');
+        const panel = document.querySelector('[data-nav-panel]');
+        if (!toggle || !panel) {
+            return;
+        }
+
+        const navLinks = panel.querySelectorAll('[data-nav-link]');
+        const body = document.body;
+
+        const closePanel = () => {
+            panel.classList.add('hidden');
+            toggle.setAttribute('aria-expanded', 'false');
+            body.classList.remove('overflow-hidden');
+        };
+
+        toggle.addEventListener('click', () => {
+            const isHidden = panel.classList.toggle('hidden');
+            const expanded = !isHidden;
+            toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            body.classList.toggle('overflow-hidden', expanded);
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (panel.classList.contains('hidden')) {
+                    return;
+                }
+                closePanel();
             });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                closePanel();
+            }
         });
     }
 
@@ -107,11 +134,11 @@
         const cartButtons = document.querySelectorAll('[data-add-cart]');
         cartButtons.forEach(button => {
             button.addEventListener('click', () => {
-                button.classList.add('is-loading');
                 const originalText = button.textContent;
                 button.textContent = 'Aggiunto!';
+                button.classList.add('pointer-events-none', 'opacity-60');
                 setTimeout(() => {
-                    button.classList.remove('is-loading');
+                    button.classList.remove('pointer-events-none', 'opacity-60');
                     button.textContent = originalText;
                 }, 1200);
             });
