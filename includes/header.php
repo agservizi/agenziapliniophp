@@ -20,7 +20,7 @@ $fullTitle = $pageTitle === $siteName ? $siteName : $pageTitle . ' • ' . $site
     <link rel="stylesheet" href="<?= asset('assets/css/animations.css'); ?>">
     <link rel="stylesheet" href="<?= asset('assets/css/parallax.css'); ?>">
 </head>
-<body class="theme-dark">
+<body class="theme-light">
 <div id="preloader">
     <div class="loader-logo">Agenzia Plinio</div>
     <div class="loader-progress"><span></span></div>
