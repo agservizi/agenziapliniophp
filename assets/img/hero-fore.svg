@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="foreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,191,0,0.45)" />
+      <stop offset="100%" stop-color="rgba(255,191,0,0.05)" />
+    </linearGradient>
+  </defs>
+  <path d="M0 820 C200 780 340 820 560 780 C760 740 900 800 1120 760 C1320 720 1450 760 1600 700 L1600 900 L0 900 Z" fill="rgba(10,12,15,0.95)" />
+  <circle cx="320" cy="720" r="120" fill="url(#foreGradient)" opacity="0.5" />
+  <circle cx="1320" cy="690" r="150" fill="url(#foreGradient)" opacity="0.45" />
+</svg>

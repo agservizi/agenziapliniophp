@@ -1,0 +1,37 @@
+/* Parallax specific styling */
+.parallax-scene {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.parallax-layer {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+    pointer-events: none;
+}
+
+.parallax-layer.background {
+    transform: translateZ(-1px) scale(2);
+    opacity: 0.6;
+}
+
+.parallax-layer.midground {
+    transform: translateZ(0);
+    opacity: 0.75;
+}
+
+.parallax-layer.foreground {
+    transform: translateZ(1px) scale(1.05);
+    opacity: 0.95;
+}
+
+.parallax-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5, 5, 7, 0.15) 0%, rgba(5, 5, 7, 0.85) 100%);
+    z-index: 2;
+}

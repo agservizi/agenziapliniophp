@@ -1,0 +1,71 @@
+/* Animation utilities */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-animate="fade-up"] {
+    transform: translateY(60px);
+}
+
+[data-animate="fade-left"] {
+    transform: translateX(60px);
+}
+
+[data-animate="fade-right"] {
+    transform: translateX(-60px);
+}
+
+[data-animate="fade-left"].is-visible,
+[data-animate="fade-right"].is-visible {
+    transform: translateX(0);
+}
+
+[data-stagger] > * {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+[data-stagger].is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-stagger].is-visible > * {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-stagger].is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+[data-stagger].is-visible > *:nth-child(2) { transition-delay: 0.1s; }
+[data-stagger].is-visible > *:nth-child(3) { transition-delay: 0.15s; }
+[data-stagger].is-visible > *:nth-child(4) { transition-delay: 0.2s; }
+[data-stagger].is-visible > *:nth-child(5) { transition-delay: 0.25s; }
+
+[data-parallax-layer] {
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+}
+
+.button-liquid {
+    position: relative;
+    overflow: hidden;
+}
+
+.button-liquid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255, 191, 0, 0.4), transparent 60%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.45s ease;
+}
+
+.button-liquid:hover::before {
+    transform: translate(-50%, -50%) scale(2);
+}
