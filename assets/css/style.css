@@ -593,7 +593,7 @@ main.page-content {
 
 .service-nav {
     position: sticky;
-    top: 120px;
+    top: 96px;
     background: var(--color-surface);
     border-radius: 18px;
     border: 1px solid var(--color-border);
@@ -647,10 +647,34 @@ main.page-content {
     padding-bottom: 4rem;
 }
 
+.service-catalog .columns {
+    align-items: flex-start;
+    gap: 2.5rem;
+}
+
 .service-catalog__content {
     display: flex;
     flex-direction: column;
     gap: 3.5rem;
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+    padding-right: 1rem;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 2rem;
+}
+
+.service-catalog__content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.service-catalog__content::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.05);
+    border-radius: 999px;
+}
+
+.service-catalog__content::-webkit-scrollbar-thumb {
+    background: rgba(255, 191, 0, 0.5);
+    border-radius: 999px;
 }
 
 .service-area__header {
@@ -704,6 +728,13 @@ main.page-content {
 
 .service-solution .title {
     margin-bottom: 0.5rem;
+}
+
+.service-area {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: calc(100vh - 260px);
+    padding-bottom: 1rem;
 }
 
 .service-meta {
@@ -818,6 +849,14 @@ main.page-content {
 
     .service-catalog__content {
         gap: 2.5rem;
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+        scroll-snap-type: none;
+    }
+
+    .service-area {
+        min-height: 0;
     }
 
     .service-hero__stats {
