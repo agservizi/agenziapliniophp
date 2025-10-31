@@ -1,8 +1,25 @@
 /* Nightfall Tailwind overlay */
 :root {
     color-scheme: dark;
+    --color-background: #010b1f;
+    --color-surface: rgba(8, 22, 52, 0.88);
+    --color-surface-alt: rgba(4, 16, 36, 0.92);
+    --color-surface-muted: rgba(6, 18, 42, 0.72);
+    --color-primary: #60a5fa;
+    --color-primary-soft: rgba(96, 165, 250, 0.22);
+    --color-secondary: #38bdf8;
+    --color-accent: #fbbf24;
+    --color-text: #e8f1ff;
+    --color-text-muted: #9fb3d7;
+    --color-border: rgba(96, 165, 250, 0.24);
+    --color-border-strong: rgba(96, 165, 250, 0.38);
+    --shadow-sm: 0 12px 28px rgba(2, 8, 23, 0.45);
+    --shadow-md: 0 22px 60px rgba(2, 11, 28, 0.5);
+    --shadow-xl: 0 32px 90px rgba(1, 7, 22, 0.6);
+    --shadow-xxl: 0 48px 140px rgba(1, 6, 20, 0.65);
     --shadow-glass: 0 34px 120px rgba(6, 14, 36, 0.58);
     --border-glass: rgba(148, 197, 253, 0.16);
+    --transition: all 0.35s ease;
 }
 
 html {
@@ -12,7 +29,7 @@ html {
 body {
     font-family: 'Inter', 'Poppins', sans-serif;
     background: radial-gradient(120% 140% at 0% 0%, rgba(36, 71, 140, 0.22) 0%, rgba(7, 20, 49, 0.6) 40%, #020817 72%);
-    color: #eaf2ff;
+    color: var(--color-text);
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
@@ -61,7 +78,7 @@ main.page-content {
     position: relative;
     border-radius: 28px;
     border: 1px solid var(--border-glass);
-    background: rgba(9, 22, 48, 0.76);
+    background: var(--color-surface-alt);
     box-shadow: var(--shadow-glass);
     -webkit-backdrop-filter: blur(28px);
     backdrop-filter: blur(28px);
@@ -206,7 +223,7 @@ main.page-content {
     border-radius: 18px;
     border: 1px solid rgba(148, 197, 253, 0.25);
     background: rgba(7, 20, 48, 0.78);
-    color: #dbe8ff;
+    color: var(--color-text);
     display: grid;
     place-items: center;
     box-shadow: 0 22px 60px rgba(2, 10, 26, 0.45);
@@ -264,7 +281,7 @@ main.page-content {
     border-radius: 18px;
     border: 1px solid rgba(148, 197, 253, 0.22);
     background: rgba(7, 18, 40, 0.72);
-    color: #eaf2ff;
+    color: var(--color-text);
     padding: 0.9rem 1.2rem;
     transition: border-color 0.25s ease, background 0.25s ease;
 }
@@ -450,9 +467,9 @@ main.page-content {
     gap: 1rem;
     padding: 24px;
     border-radius: 20px;
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(95, 125, 243, 0.12));
-    border: 1px solid rgba(95, 125, 243, 0.28);
-    box-shadow: var(--shadow-xxl);
+    background: linear-gradient(160deg, rgba(4, 16, 40, 0.95), rgba(9, 26, 62, 0.82));
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-xl);
     position: relative;
     overflow: hidden;
 }
@@ -461,8 +478,8 @@ main.page-content {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top left, rgba(255, 191, 0, 0.28), transparent 65%);
-    opacity: 0.65;
+    background: radial-gradient(circle at top left, rgba(96, 165, 250, 0.28), transparent 65%);
+    opacity: 0.55;
     pointer-events: none;
 }
 
@@ -472,9 +489,9 @@ main.page-content {
     gap: 0.35rem;
     padding: 16px;
     border-radius: 16px;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(95, 125, 243, 0.18));
-    border: 1px solid rgba(95, 125, 243, 0.18);
-    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+    background: linear-gradient(145deg, rgba(6, 20, 48, 0.95), rgba(9, 30, 68, 0.78));
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
 }
 
 .service-stat__value {
@@ -492,9 +509,9 @@ main.page-content {
 .service-pillars .card {
     height: 100%;
     border-radius: 24px;
-    border: 1px solid rgba(95, 125, 243, 0.18);
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(95, 125, 243, 0.16));
-    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--color-border);
+    background: linear-gradient(160deg, rgba(3, 12, 32, 0.96), rgba(9, 28, 68, 0.78));
+    box-shadow: var(--shadow-md);
     position: relative;
     overflow: hidden;
     transition: transform 0.55s ease, box-shadow 0.55s ease;
@@ -504,7 +521,7 @@ main.page-content {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(255, 191, 0, 0.25), transparent 60%);
+    background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.25), transparent 60%);
     opacity: 0;
     transition: opacity 0.55s ease;
 }
@@ -529,10 +546,10 @@ main.page-content {
 .service-nav {
     position: sticky;
     top: 96px;
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(95, 125, 243, 0.16));
+    background: linear-gradient(160deg, rgba(6, 20, 48, 0.94), rgba(2, 10, 32, 0.88));
     border-radius: 20px;
-    border: 1px solid rgba(95, 125, 243, 0.24);
-    box-shadow: var(--shadow-xxl);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-xl);
     padding: 32px 26px;
     display: flex;
     flex-direction: column;
@@ -547,7 +564,7 @@ main.page-content {
     width: 240px;
     height: 240px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 191, 0, 0.4), transparent 65%);
+    background: radial-gradient(circle, rgba(30, 64, 175, 0.4), transparent 65%);
     opacity: 0.6;
     filter: blur(20px);
     animation: pulseRing 12s ease-in-out infinite;
@@ -574,23 +591,23 @@ main.page-content {
     border-radius: 12px;
     font-weight: 600;
     color: var(--color-text-muted);
-    background: rgba(255, 255, 255, 0.45);
-    border: 1px solid transparent;
+    background: rgba(7, 20, 48, 0.65);
+    border: 1px solid rgba(96, 165, 250, 0.16);
     transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
 }
 
 .service-nav__link:hover,
 .service-nav__link:focus {
     color: var(--color-text);
-    border-color: rgba(95, 125, 243, 0.45);
-    background: rgba(95, 125, 243, 0.18);
+    border-color: var(--color-border-strong);
+    background: rgba(12, 36, 78, 0.82);
     transform: translateX(6px);
-    box-shadow: 0 18px 40px rgba(95, 125, 243, 0.22);
+    box-shadow: 0 18px 40px rgba(6, 20, 48, 0.55);
 }
 
 .service-nav__cta .button {
     border-radius: 999px;
-    box-shadow: 0 26px 46px rgba(255, 191, 0, 0.35);
+    box-shadow: 0 26px 46px rgba(3, 14, 36, 0.5);
     position: relative;
     overflow: hidden;
 }
@@ -599,7 +616,7 @@ main.page-content {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.4), transparent 60%);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.28), transparent 60%);
     transform: translateX(-120%);
     transition: transform 0.6s ease;
 }
@@ -623,11 +640,11 @@ main.page-content {
 }
 
 .service-directory__card {
-    background: var(--color-surface);
+    background: linear-gradient(160deg, rgba(3, 12, 32, 0.95), rgba(8, 26, 64, 0.78));
     border: 1px solid var(--color-border);
     border-radius: 22px;
     padding: 32px;
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-md);
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -641,7 +658,7 @@ main.page-content {
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: linear-gradient(140deg, rgba(255, 191, 0, 0.65), rgba(95, 125, 243, 0.55), rgba(52, 211, 153, 0.45));
+    background: linear-gradient(140deg, rgba(30, 64, 175, 0.65), rgba(96, 165, 250, 0.5), rgba(14, 165, 233, 0.35));
     opacity: 0;
     transition: opacity 0.5s ease;
     z-index: 0;
@@ -651,14 +668,14 @@ main.page-content {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(255, 191, 0, 0.18), transparent 60%);
+    background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.22), transparent 60%);
     opacity: 0;
     transition: opacity 0.5s ease;
 }
 
 .service-directory__card:hover {
     transform: translateY(-12px);
-    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.2);
+    box-shadow: 0 30px 80px rgba(3, 14, 36, 0.52);
 }
 
 .service-directory__card:hover::after {
@@ -682,9 +699,9 @@ main.page-content {
     height: 54px;
     font-size: 1.8rem;
     border-radius: 16px;
-    background: linear-gradient(140deg, rgba(255, 191, 0, 0.95), rgba(95, 125, 243, 0.85));
-    box-shadow: 0 18px 40px rgba(95, 125, 243, 0.35);
-    color: #1f1f2b;
+    background: linear-gradient(140deg, rgba(30, 64, 175, 0.95), rgba(96, 165, 250, 0.85));
+    box-shadow: 0 18px 40px rgba(3, 14, 36, 0.5);
+    color: var(--color-text);
     position: relative;
     overflow: hidden;
 }
@@ -693,8 +710,8 @@ main.page-content {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.65), transparent 65%);
-    opacity: 0.7;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.28), transparent 65%);
+    opacity: 0.8;
 }
 
 .service-directory__tagline {
@@ -741,9 +758,9 @@ main.page-content {
     height: 100%;
     padding: 30px;
     border-radius: 22px;
-    border: 1px solid rgba(95, 125, 243, 0.22);
-    background: linear-gradient(150deg, rgba(255, 255, 255, 0.94), rgba(95, 125, 243, 0.14));
-    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--color-border);
+    background: linear-gradient(150deg, rgba(6, 18, 44, 0.95), rgba(9, 30, 68, 0.75));
+    box-shadow: var(--shadow-md);
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
@@ -760,14 +777,14 @@ main.page-content {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(95, 125, 243, 0.22), transparent 65%);
+    background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.22), transparent 65%);
     opacity: 0;
     transition: opacity 0.45s ease;
 }
 
 .service-journey__step:hover {
     transform: translateY(-10px);
-    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+    box-shadow: 0 24px 60px rgba(3, 14, 36, 0.48);
 }
 
 .service-journey__step:hover::after {
@@ -810,9 +827,9 @@ main.page-content {
 }
 
 .service-detail-hero__card {
-    background: linear-gradient(150deg, rgba(255, 255, 255, 0.94), rgba(95, 125, 243, 0.18));
+    background: linear-gradient(150deg, rgba(6, 18, 44, 0.96), rgba(9, 28, 68, 0.78));
     border-radius: 28px;
-    border: 1px solid rgba(95, 125, 243, 0.25);
+    border: 1px solid var(--color-border);
     box-shadow: var(--shadow-xxl);
     padding: 44px;
     display: flex;
@@ -826,8 +843,8 @@ main.page-content {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(244, 114, 182, 0.28), transparent 62%);
-    opacity: 0.8;
+    background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.25), transparent 62%);
+    opacity: 0.6;
     pointer-events: none;
 }
 
@@ -849,9 +866,9 @@ main.page-content {
     height: 56px;
     font-size: 2rem;
     border-radius: 16px;
-    background: linear-gradient(145deg, rgba(255, 191, 0, 0.95), rgba(95, 125, 243, 0.85));
-    box-shadow: 0 22px 45px rgba(95, 125, 243, 0.35);
-    color: #10121f;
+    background: linear-gradient(145deg, rgba(30, 64, 175, 0.95), rgba(96, 165, 250, 0.85));
+    box-shadow: 0 22px 45px rgba(3, 14, 36, 0.5);
+    color: var(--color-text);
     position: relative;
     overflow: hidden;
 }
@@ -860,8 +877,8 @@ main.page-content {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.65), transparent 65%);
-    opacity: 0.7;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.28), transparent 65%);
+    opacity: 0.8;
 }
 
 .service-detail-tagline {
@@ -886,11 +903,11 @@ main.page-content {
     gap: 0.35rem;
     padding: 0.55rem 1.1rem;
     border-radius: 999px;
-    border: 1px solid rgba(95, 125, 243, 0.45);
-    background: linear-gradient(140deg, rgba(95, 125, 243, 0.16), rgba(255, 191, 0, 0.22));
+    border: 1px solid var(--color-border-strong);
+    background: linear-gradient(140deg, rgba(9, 28, 68, 0.65), rgba(30, 64, 175, 0.55));
     color: var(--color-text);
     font-weight: 600;
-    box-shadow: 0 12px 28px rgba(95, 125, 243, 0.22);
+    box-shadow: 0 12px 28px rgba(6, 20, 48, 0.55);
 }
 
 .service-detail-actions {
@@ -912,8 +929,8 @@ main.page-content {
     padding: 28px;
     border-radius: 20px;
     border: 1px solid var(--color-border);
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: var(--shadow-xl);
+    background: linear-gradient(160deg, rgba(3, 12, 32, 0.94), rgba(9, 28, 68, 0.78));
+    box-shadow: var(--shadow-md);
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -924,8 +941,8 @@ main.page-content {
     padding: 28px;
     border-radius: 20px;
     border: 1px solid var(--color-border);
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: var(--shadow-xl);
+    background: linear-gradient(160deg, rgba(3, 12, 32, 0.94), rgba(9, 28, 68, 0.78));
+    box-shadow: var(--shadow-md);
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -960,9 +977,9 @@ main.page-content {
     gap: 1rem;
     padding: 18px 22px;
     border-radius: 18px;
-    border: 1px solid rgba(95, 125, 243, 0.18);
-    background: linear-gradient(150deg, rgba(255, 255, 255, 0.94), rgba(95, 125, 243, 0.16));
-    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--color-border);
+    background: linear-gradient(150deg, rgba(6, 18, 44, 0.94), rgba(9, 30, 68, 0.75));
+    box-shadow: var(--shadow-md);
     color: var(--color-text);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     position: relative;
@@ -971,7 +988,7 @@ main.page-content {
 
 .service-detail-related__card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 20px 50px rgba(3, 14, 36, 0.5);
 }
 
 .service-detail-related__card::before {
@@ -979,7 +996,7 @@ main.page-content {
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, rgba(255, 191, 0, 0.6), rgba(95, 125, 243, 0.5));
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.55), rgba(96, 165, 250, 0.5));
     opacity: 0;
     transition: opacity 0.4s ease;
 }
@@ -999,10 +1016,10 @@ main.page-content {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: linear-gradient(140deg, rgba(255, 191, 0, 0.95), rgba(95, 125, 243, 0.75));
+    background: linear-gradient(140deg, rgba(30, 64, 175, 0.95), rgba(96, 165, 250, 0.75));
     font-size: 1.4rem;
-    color: #10121f;
-    box-shadow: 0 14px 36px rgba(95, 125, 243, 0.25);
+    color: var(--color-text);
+    box-shadow: 0 14px 36px rgba(6, 18, 44, 0.5);
 }
 
 .service-detail-related__name {
@@ -1058,7 +1075,7 @@ main.page-content {
 /* Responsive */
 @media (max-width: 1024px) {
     .navbar-menu {
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(4, 16, 40, 0.95);
         padding-bottom: 20px;
     }
 
