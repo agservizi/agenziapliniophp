@@ -7,6 +7,7 @@
     --color-surface-muted: rgba(6, 18, 42, 0.72);
     --color-primary: #60a5fa;
     --color-primary-soft: rgba(96, 165, 250, 0.22);
+    --color-primary-bright: #93c5fd;
     --color-secondary: #38bdf8;
     --color-accent: #fbbf24;
     --color-text: #e8f1ff;
@@ -24,15 +25,59 @@
 
 html {
     scroll-behavior: smooth;
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 body {
     font-family: 'Inter', 'Poppins', sans-serif;
     background: radial-gradient(120% 140% at 0% 0%, rgba(36, 71, 140, 0.22) 0%, rgba(7, 20, 49, 0.6) 40%, #020817 72%);
     color: var(--color-text);
+    background-color: var(--color-background);
     overflow-x: hidden;
     position: relative;
     min-height: 100vh;
+}
+
+body.bg-midnight-950 {
+    background-color: #020817 !important;
+    color: var(--color-text);
+}
+
+.bg-midnight-900\/70 {
+    background-color: rgba(5, 15, 36, 0.7) !important;
+}
+
+.bg-midnight-900\/60 {
+    background-color: rgba(5, 15, 36, 0.6) !important;
+}
+
+.bg-midnight-900\/50 {
+    background-color: rgba(5, 15, 36, 0.5) !important;
+}
+
+.bg-midnight-900\/40 {
+    background-color: rgba(5, 15, 36, 0.4) !important;
+}
+
+.bg-midnight-900\/30 {
+    background-color: rgba(5, 15, 36, 0.3) !important;
+}
+
+.bg-white\/5 {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.border-white\/5 {
+    border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.border-white\/10 {
+    border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 body::before {
@@ -121,7 +166,7 @@ main.page-content {
     padding: 0.25rem 0.85rem;
     border: 1px solid rgba(96, 165, 250, 0.35);
     background: rgba(15, 41, 82, 0.6);
-    color: #93c5fd;
+    color: var(--color-primary-bright);
     font-size: 0.7rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -156,7 +201,7 @@ main.page-content {
     font-size: 1.25rem;
     letter-spacing: 0.6em;
     text-transform: uppercase;
-    color: #60a5fa;
+    color: var(--color-primary);
     animation: pulseGlow 2.4s infinite;
 }
 
@@ -173,7 +218,7 @@ main.page-content {
     height: 100%;
     width: 100%;
     transform-origin: left;
-    background: linear-gradient(90deg, rgba(148, 197, 253, 0.25) 0%, #60a5fa 45%, rgba(96, 165, 250, 0.4) 100%);
+    background: linear-gradient(90deg, rgba(148, 197, 253, 0.25) 0%, var(--color-primary) 45%, rgba(96, 165, 250, 0.4) 100%);
     animation: loaderBar 2.6s ease-in-out infinite;
 }
 
@@ -187,7 +232,7 @@ main.page-content {
     border-radius: 20px;
     border: 1px solid rgba(96, 165, 250, 0.25);
     background: rgba(6, 18, 38, 0.88);
-    color: #eaf2ff;
+    color: var(--color-text);
     padding: 1.1rem 1.4rem;
     box-shadow: 0 26px 90px rgba(3, 10, 26, 0.55);
     z-index: 995;
@@ -240,7 +285,7 @@ main.page-content {
 .scroll-top:hover {
     transform: translateY(-4px);
     border-color: rgba(96, 165, 250, 0.5);
-    color: #93c5fd;
+    color: var(--color-primary-bright);
 }
 
 /* Button 3D liquid accent */
