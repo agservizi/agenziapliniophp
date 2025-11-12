@@ -1,0 +1,250 @@
+# Apache Configuration - Agenzia Plinio
+# URL Rewriting, Security Headers e Ottimizzazioni
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+    
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options nosniff
+    
+    # Enable XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy (base)
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' fonts.googleapis.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: *; connect-src 'self'"
+    
+    # Remove Server signature
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# Hide sensitive files
+<FilesMatch "\.(env|log|sql|md|txt|yml|yaml|json)$">
+    Require all denied
+</FilesMatch>
+
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+<Files "config.php">
+    Require all denied
+</Files>
+
+# Prevent access to includes directory
+<Directory "includes/">
+    Require all denied
+</Directory>
+
+# Error Pages
+ErrorDocument 403 /error/403.php
+ErrorDocument 404 /error/404.php
+ErrorDocument 500 /error/500.php
+
+# Gzip Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive on
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/ico "access plus 1 month"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType application/x-javascript "access plus 1 week"
+    
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 month"
+    ExpiresByType font/woff "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 month"
+    ExpiresByType application/font-woff "access plus 1 month"
+    
+    # HTML
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# Cache Control Headers
+<IfModule mod_headers.c>
+    # CSS and JS
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+    
+    # Images
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
+    
+    # Fonts
+    <FilesMatch "\.(ttf|woff|woff2)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
+    
+    # HTML
+    <FilesMatch "\.html?$">
+        Header set Cache-Control "max-age=3600, public, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# URL Rewriting Rules
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Force HTTPS (uncomment when SSL is configured)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Clean URLs - Remove .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Redirect .php files to clean URLs
+RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# Area Cliente Routes
+RewriteRule ^area-cliente/?$ area-cliente/index.php [L]
+RewriteRule ^area-cliente/([a-zA-Z0-9-_]+)/?$ area-cliente/$1.php [L]
+
+# Area Admin Routes
+RewriteRule ^area-admin/?$ area-admin/index.php [L]
+RewriteRule ^area-admin/([a-zA-Z0-9-_]+)/?$ area-admin/$1.php [L]
+
+# API Routes (for future implementation)
+RewriteRule ^api/([a-zA-Z0-9-_]+)/?$ api/$1.php [L]
+RewriteRule ^api/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)/?$ api/$1/$2.php [L]
+
+# Servizi con slug SEO-friendly
+RewriteRule ^servizio/([a-zA-Z0-9-_]+)/?$ servizio.php?slug=$1 [L]
+
+# Shop categories
+RewriteRule ^shop/([a-zA-Z0-9-_]+)/?$ shop.php?categoria=$1 [L]
+
+# Product pages
+RewriteRule ^prodotto/([a-zA-Z0-9-_]+)/?$ prodotto.php?slug=$1 [L]
+
+# User profiles (if implemented)
+RewriteRule ^utente/([a-zA-Z0-9-_]+)/?$ profilo.php?username=$1 [L]
+
+# Search results
+RewriteRule ^ricerca/([^/]+)/?$ ricerca.php?q=$1 [L]
+
+# Blog/News (if implemented)
+RewriteRule ^news/?$ news.php [L]
+RewriteRule ^news/([a-zA-Z0-9-_]+)/?$ news.php?slug=$1 [L]
+
+# Contact forms with service parameter
+RewriteCond %{QUERY_STRING} ^servizio=([^&]+)
+RewriteRule ^contatti/?$ contatti.php?servizio=%1 [L]
+
+# Sitemap
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+RewriteRule ^robots\.txt$ robots.php [L]
+
+# Maintenance mode (uncomment to enable)
+# RewriteCond %{REQUEST_URI} !/maintenance.html$
+# RewriteCond %{REMOTE_ADDR} !^192\.168\.1\.100$
+# RewriteRule $ /maintenance.html [R=302,L]
+
+# Block access to sensitive directories
+RewriteRule ^(includes|config|logs|backups|vendor)/ - [F]
+
+# Block PHP execution in uploads directory
+<Directory "assets/uploads/">
+    <FilesMatch "\.php$">
+        Require all denied
+    </FilesMatch>
+</Directory>
+
+# Prevent hotlinking
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?agenziaplinio\.local [NC]
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?yourdomain\.com [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp)$ /assets/images/hotlink-protection.jpg [R=301,L]
+
+# Performance optimizations
+<IfModule mod_pagespeed.c>
+    ModPagespeed on
+    ModPagespeedEnableFilters rewrite_css,rewrite_javascript,rewrite_images
+    ModPagespeedEnableFilters collapse_whitespace,remove_comments
+</IfModule>
+
+# Disable ETags
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+
+# Disable server-status and server-info
+<Location "/server-status">
+    Require all denied
+</Location>
+
+<Location "/server-info">
+    Require all denied
+</Location>
+
+# Custom MIME types
+AddType application/font-woff2 .woff2
+AddType application/font-woff .woff
+AddType application/json .json
+AddType application/manifest+json .webmanifest
+
+# PHP Settings (if allowed)
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log /var/log/php_errors.log
+    php_value upload_max_filesize 10M
+    php_value post_max_size 12M
+    php_value memory_limit 256M
+    php_value max_execution_time 30
+    php_value session.cookie_httponly 1
+    php_value session.cookie_secure 1
+    php_value session.use_strict_mode 1
+</IfModule>
+
+# Redirect old URLs (example - customize as needed)
+# Redirect 301 /old-page.html /new-page
+# Redirect 301 /vecchi-servizi /servizi
+
+# Special pages
+RewriteRule ^admin/?$ area-admin/ [R=301,L]
+RewriteRule ^login/?$ area-cliente/login [R=301,L]
+RewriteRule ^registrati/?$ area-cliente/register [R=301,L]
+
+# Handle trailing slashes
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [R=301,L]

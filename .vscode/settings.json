@@ -10,9 +10,9 @@
             "server": "193.203.168.205",
             "port": 3306,
             "driver": "MySQL",
-            "name": "agenziaplinio",
             "database": "u427445037_agenziaplinio",
-            "username": "u427445037_agenziaplinio"
+            "username": "u427445037_agenziaplinio",
+            "name": "agservizi"
         }
     ]
 }
