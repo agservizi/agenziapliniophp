@@ -57,6 +57,26 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <?php if (isset($additional_css)) : foreach ($additional_css as $css) : ?>
     <link rel="stylesheet" href="<?= h($css) ?>">
     <?php endforeach; endif; ?>
+
+    <script>
+        window.AgenziaPlinio = Object.assign({}, window.AgenziaPlinio || {}, {
+            app: {
+                name: <?= json_encode(APP_NAME) ?>,
+                domain: <?= json_encode(APP_DOMAIN) ?>,
+                baseUrl: <?= json_encode(APP_BASE_URL) ?>
+            },
+            csrf_token: <?= json_encode(generateCSRFToken()) ?>,
+            user: <?= json_encode($current_user ? [
+                'isLoggedIn' => true,
+                'id' => (int) $current_user['id'],
+                'name' => $current_user['nome'],
+                'email' => $current_user['email'],
+                'role' => $current_user['ruolo']
+            ] : [
+                'isLoggedIn' => false
+            ]) ?>
+        });
+    </script>
     
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
