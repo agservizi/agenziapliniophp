@@ -155,7 +155,7 @@
                 <div class="footer-legal">
                     <p>&copy; <?= date('Y') ?> <?= h(APP_NAME) ?>. Tutti i diritti riservati.</p>
                     <div class="legal-links">
-                        <a href="/privacy.php">Privacy Policy</a>
+                        <a href="/privacy-policy.php">Privacy Policy</a>
                         <a href="/termini.php">Termini di Servizio</a>
                         <a href="/cookie.php">Cookie Policy</a>
                     </div>

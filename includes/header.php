@@ -53,6 +53,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/components.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/js-components.css">
     <?php if (isset($additional_css)) : foreach ($additional_css as $css) : ?>
     <link rel="stylesheet" href="<?= h($css) ?>">
     <?php endforeach; endif; ?>

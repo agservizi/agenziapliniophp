@@ -16,6 +16,7 @@ define('APP_NAME', 'AG SERVIZI VIA PLINIO 72');
 define('APP_DOMAIN', 'agenziaplinio.local');
 define('APP_BASE_URL', '/');
 define('SUPPORT_EMAIL', 'supporto@agenziaplinio.local');
+define('GOOGLE_ANALYTICS_ID', ''); // Lasciare vuoto se non utilizzato
 
 // Configurazione sicurezza
 define('HASH_ALGO', PASSWORD_DEFAULT);

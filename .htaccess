@@ -39,6 +39,11 @@ RewriteEngine On
     Require all denied
 </Files>
 
+# Allow access to assets (CSS, JS, images, fonts)
+<Directory "assets/">
+    Require all granted
+</Directory>
+
 # Prevent access to includes directory
 <Directory "includes/">
     Require all denied
